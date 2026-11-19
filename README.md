@@ -67,5 +67,5 @@ npm run test:break-it             # in another (or pass the live URL)
 * **Backend — Render** (`render.yaml`): web service, `npm run build` / `npm start`, a persistent disk mounted at `/var/data`
   (`DATA_DIR`) holds `shuka.db`, `uploads/` and `backups/`. `SESSION_SECRET` is an environment variable.
   A backup is written every day with `VACUUM INTO` (last 7 kept).
-* **Frontend — Netlify** (`client/netlify.toml`): base directory `client`, publishes `dist`, and proxies `/api/*` and `/uploads/*`
+* **Frontend — Netlify** (`netlify.toml`): base directory `client`, publishes `dist`, and proxies `/api/*` and `/uploads/*`
   to the Render service, so the site has one URL and the httpOnly session cookie is first-party.

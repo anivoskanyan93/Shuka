@@ -1,7 +1,8 @@
-# Netlify serves the React app and proxies the API + images to the Render backend,
-# so the browser sees a single origin (cookies just work).
+# Netlify serves the React app (client/) and proxies the API + images to the Render backend,
+# so the browser sees a single origin and the httpOnly session cookie is first-party.
 [build]
-  command = "npm run build"
+  base = "client"
+  command = "npm ci --include=dev && npm run build"
   publish = "dist"
 
 [build.environment]
