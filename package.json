@@ -4,7 +4,7 @@
   "description": "Shuka — Amazon-style marketplace for Armenia (React + Express + SQLite)",
   "engines": { "node": ">=20" },
   "scripts": {
-    "install:all": "npm ci --prefix server && npm ci --prefix client",
+    "install:all": "npm ci --prefix server && npm ci --include=dev --prefix client",
     "build": "npm run install:all && npm run build --prefix client",
     "start": "node server/src/index.js",
     "dev": "npm run build && npm start",
