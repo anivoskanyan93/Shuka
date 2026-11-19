@@ -19,10 +19,10 @@ function backup() {
 
 (async () => {
   migrate();
+  const port = Number(process.env.PORT) || 3000;
+  app.listen(port, () => console.log(`Shuka running on http://localhost:${port}`));
   // first start on an empty disk: create demo data so the shop is never empty
   if (db.prepare('SELECT COUNT(*) n FROM users').get().n === 0) await seed();
   try { backup(); } catch (e) { console.error('backup failed', e); }
   setInterval(() => { try { backup(); } catch (e) { console.error('backup failed', e); } }, 3600 * 1000);
-  const port = Number(process.env.PORT) || 3000;
-  app.listen(port, () => console.log(`Shuka running on http://localhost:${port}`));
 })();

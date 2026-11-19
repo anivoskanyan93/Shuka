@@ -35,6 +35,9 @@ function migrate() {
   }
 }
 
+// apply migrations before any other module prepares statements
+migrate();
+
 const now = () => new Date().toISOString();
 
 module.exports = { db, migrate, DATA_DIR, DB_PATH, UPLOADS_DIR, now };
