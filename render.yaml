@@ -1,9 +1,11 @@
 # Render Blueprint: one web service that runs the API (and also serves the built frontend).
+# Free plan (no persistent disk): the database is re-seeded with demo data after each restart.
+# For a persistent disk switch to `plan: starter` and uncomment the disk block + DATA_DIR.
 services:
   - type: web
     name: shuka-api
     runtime: node
-    plan: starter            # persistent disks need a paid instance
+    plan: free
     buildCommand: npm run build
     startCommand: npm start
     healthCheckPath: /api/health
@@ -12,11 +14,11 @@ services:
         value: production
       - key: NODE_VERSION
         value: "22"
-      - key: DATA_DIR
-        value: /var/data
       - key: SESSION_SECRET
         generateValue: true
-    disk:
-      name: shuka-data
-      mountPath: /var/data
-      sizeGB: 1
+      # - key: DATA_DIR
+      #   value: /var/data
+    # disk:
+    #   name: shuka-data
+    #   mountPath: /var/data
+    #   sizeGB: 1
