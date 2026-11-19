@@ -1,0 +1,17 @@
+{
+  "name": "shuka",
+  "private": true,
+  "description": "Shuka — Amazon-style marketplace for Armenia (React + Express + SQLite)",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "install:all": "npm ci --prefix server && npm ci --prefix client",
+    "build": "npm run install:all && npm run build --prefix client",
+    "start": "node server/src/index.js",
+    "dev": "npm run build && npm start",
+    "seed": "node server/scripts/seed.js",
+    "seed:reset": "node server/scripts/seed.js --force",
+    "migrate": "node -e \"require('./server/src/db').migrate()\"",
+    "backup": "node server/scripts/backup.js",
+    "test:break-it": "node server/scripts/break-it.js"
+  }
+}

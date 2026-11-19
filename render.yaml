@@ -1,0 +1,22 @@
+# Render Blueprint: one web service that runs the API (and also serves the built frontend).
+services:
+  - type: web
+    name: shuka-api
+    runtime: node
+    plan: starter            # persistent disks need a paid instance
+    buildCommand: npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: "22"
+      - key: DATA_DIR
+        value: /var/data
+      - key: SESSION_SECRET
+        generateValue: true
+    disk:
+      name: shuka-data
+      mountPath: /var/data
+      sizeGB: 1
